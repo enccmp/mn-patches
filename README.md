@@ -128,7 +128,11 @@ sqlite3 /path/to/mounted/ssd/.../m.sqlite3 \
 
 ## How to use the patches
 
-1. **Build the bundle** (see below) or use a released `patches-<version>.mpp`.
+0. **Get the app APK** — download Monument (`com.getmonument.android`) from APKPure:
+   <https://apkpure.com/monument-photo-management/com.getmonument.android/download>.
+   These patches target version **4.3.5**.
+1. **Build the bundle** (see below) or download a released `patches-<version>.mpp` from the
+   repository's [Releases](../../releases).
 2. **Add it to Morphe** as a **Local** patch source:
    - *Mobile (Morphe Manager):* Add patch source → **Local** → pick the `.mpp` (it must be `.mpp`,
      not a zip).
@@ -184,6 +188,20 @@ and patcher library are on GitHub Packages).
    Output: `patches/build/libs/patches-<version>.mpp` — this is the file you load into Morphe.
 
 Bump `version` in `gradle.properties` on every change so each `.mpp` is uniquely identifiable.
+
+## Releases (CI)
+
+`.github/workflows/release.yml` publishes a release **when the version changes**. The flow is:
+
+1. Bump `version` in `gradle.properties` locally (patch component) and push to `main`.
+2. CI reads the version and checks whether a release `v<version>` already exists.
+3. If it doesn't, CI builds `patches-<version>.mpp` and publishes a GitHub **Release** tagged
+   `v<version>` (which also creates the tag) with the `.mpp` attached.
+4. If it does (e.g. a docs-only push with an unchanged version), CI builds and releases nothing.
+
+CI never writes to the repo — no bot commits. It authenticates to GitHub Packages with the
+built-in `GITHUB_TOKEN`; no secrets are needed for the common case. You can also trigger it
+manually via **Run workflow**.
 
 Open the project in **IntelliJ IDEA** or **Android Studio** (not VS Code) for Kotlin/Gradle
 resolution; there is no root `build.gradle` by design — the settings plugin configures the
