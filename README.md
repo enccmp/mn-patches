@@ -44,6 +44,7 @@ over time.
 | Entry | What it covers |
 |-------|----------------|
 | [Creating a new user offline](docs/knowledge-base/offline-user-creation.md) | Add a fully working new user by editing the device SQLite DB directly, bypassing the cloud-gated invite / register flow. Log in with the *Login with token* patch. |
+| [Disabling a user offline](docs/knowledge-base/offline-user-disable.md) | App-based user deletion fails with the cloud gone. Lock an account out instead with a one-line database change. |
 
 ---
 
