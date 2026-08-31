@@ -36,6 +36,17 @@ detailed documentation.
 
 ---
 
+## Knowledge base
+
+Tips and tricks for running Monument with a dead cloud backend. More entries will be added here
+over time.
+
+| Entry | What it covers |
+|-------|----------------|
+| [Creating a new user offline](docs/knowledge-base/offline-user-creation.md) | Add a fully working new user by editing the device SQLite DB directly, bypassing the cloud-gated invite / register flow. Log in with the *Login with token* patch. |
+
+---
+
 ## Building
 
 Prerequisites: JDK 17+ and a GitHub token with `read:packages` (the `app.morphe.patches` plugin
