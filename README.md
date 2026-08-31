@@ -17,8 +17,7 @@ detailed documentation.
 
 ## How to use the patches
 
-0. **Get the app APK** — download Monument (`com.getmonument.android`) from APKPure:
-   <https://apkpure.com/monument-photo-management/com.getmonument.android/download>.
+0. **Get the app APK** — download Monument (`com.getmonument.android`) from [APKPure](https://apkpure.com/monument-photo-management/com.getmonument.android/download).
    These patches target version **4.3.5**.
 1. **Build the bundle** (see below) or download a released `patches-<version>.mpp` from the
    repository's [Releases](../../releases).
@@ -36,24 +35,6 @@ detailed documentation.
    for how to get the serial / client id / token from the device database and the exact steps.
 
 ---
-
-## Files
-
-```
-patches/src/main/kotlin/app/morphe/patches/monument/
-├── loginwithtoken/README.md                  # Login with token — detailed docs
-├── loginwithtoken/Fingerprints.kt            # onViewCreated fingerprint (by class + signature)
-├── loginwithtoken/LoginWithTokenPatch.kt     # bytecodePatch: inject install(view)
-├── limitedcache/README.md                    # Limit thumbnail cache — detailed docs
-├── limitedcache/Fingerprints.kt              # getThumbnailsCacheSize fingerprint (by string)
-├── limitedcache/LimitCacheSizePatch.kt       # bytecodePatch: override getInt default 0 -> 5000
-└── shared/Constants.kt                       # Compatibility(com.getmonument.android, 4.3.5)
-
-extensions/monument-login/
-├── build.gradle.kts                          # extension { name = "extensions/monument-login.mpe" }
-├── src/main/AndroidManifest.xml
-└── src/main/java/app/morphe/extension/monument/LoginWithTokenPatch.java   # dialog + prefs + restart
-```
 
 ## Building
 
@@ -85,9 +66,7 @@ Bump `version` in `gradle.properties` on every change so each `.mpp` is uniquely
    `v<version>` (which also creates the tag) with the `.mpp` attached.
 4. If it does (e.g. a docs-only push with an unchanged version), CI builds and releases nothing.
 
-CI never writes to the repo — no bot commits. It authenticates to GitHub Packages with the
-built-in `GITHUB_TOKEN`; no secrets are needed for the common case. You can also trigger it
-manually via **Run workflow**.
+You can also trigger it manually via **Run workflow**.
 
 Open the project in **IntelliJ IDEA** or **Android Studio** (not VS Code) for Kotlin/Gradle
 resolution; there is no root `build.gradle` by design — the settings plugin configures the
